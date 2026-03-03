@@ -19,7 +19,7 @@ Grok Search MCP is an MCP server built on [FastMCP](https://github.com/jlowin/fa
 
 ```
 Claude --MCP--> Grok Search Server
-                  ├─ web_search  ---> Grok API (AI Search)
+                  ├─ gk_web_search  ---> Grok API (AI Search)
                   ├─ web_fetch   ---> Tavily Extract (Content Extraction)
                   └─ web_map     ---> Tavily Map (Site Mapping)
 ```
@@ -131,11 +131,11 @@ This will automatically modify the **project-level** `.claude/settings.json` `pe
 <details>
 <summary>This project provides eight MCP tools (click to expand)</summary>
 
-### `web_search` — AI Web Search
+### `gk_web_search` — AI Web Search
 
 Executes AI-driven web search via Grok API. By default it returns only Grok's answer and a `session_id` for retrieving sources later.
 
-`web_search` does not expand sources in the response; it only returns `sources_count`. Sources are cached server-side by `session_id` and can be fetched with `get_sources`.
+`gk_web_search` does not expand sources in the response; it only returns `sources_count`. Sources are cached server-side by `session_id` and can be fetched with `get_sources`.
 
 | Parameter | Type | Required | Default | Description |
 |-----------|------|----------|---------|-------------|
@@ -153,11 +153,11 @@ Return value (structured dict):
 
 ### `get_sources` — Retrieve Sources
 
-Retrieves the full cached source list for a previous `web_search` call.
+Retrieves the full cached source list for a previous `gk_web_search` call.
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
-| `session_id` | string | Yes | `session_id` returned by `web_search` |
+| `session_id` | string | Yes | `session_id` returned by `gk_web_search` |
 
 Return value (structured dict):
 - `session_id`

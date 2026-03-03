@@ -19,7 +19,7 @@ Grok Search MCP 是一个基于 [FastMCP](https://github.com/jlowin/fastmcp) 构
 
 ```
 Claude ──MCP──► Grok Search Server
-                  ├─ web_search  ───► Grok API（AI 搜索）
+                  ├─ gk_web_search  ───► Grok API（AI 搜索）
                   ├─ web_fetch   ───► Tavily Extract → Firecrawl Scrape（内容抓取，自动降级）
                   └─ web_map     ───► Tavily Map（站点映射）
 ```
@@ -131,11 +131,11 @@ claude mcp list
 <details>
 <summary>本项目提供八个 MCP 工具（展开查看）</summary>
 
-### `web_search` — AI 网络搜索
+### `gk_web_search` — AI 网络搜索
 
 通过 Grok API 执行 AI 驱动的网络搜索，默认仅返回 Grok 的回答正文，并返回 `session_id` 以便后续获取信源。
 
-`web_search` 输出不展开信源，仅返回 `sources_count`；信源会按 `session_id` 缓存在服务端，可用 `get_sources` 拉取。
+`gk_web_search` 输出不展开信源，仅返回 `sources_count`；信源会按 `session_id` 缓存在服务端，可用 `get_sources` 拉取。
 
 | 参数 | 类型 | 必填 | 默认值 | 说明 |
 |------|------|------|--------|------|
@@ -153,11 +153,11 @@ claude mcp list
 
 ### `get_sources` — 获取信源
 
-通过 `session_id` 获取对应 `web_search` 的全部信源。
+通过 `session_id` 获取对应 `gk_web_search` 的全部信源。
 
 | 参数 | 类型 | 必填 | 说明 |
 |------|------|------|------|
-| `session_id` | string | ✅ | `web_search` 返回的 `session_id` |
+| `session_id` | string | ✅ | `gk_web_search` 返回的 `session_id` |
 
 返回值（结构化字典）：
 - `session_id`

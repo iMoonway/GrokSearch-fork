@@ -35,7 +35,7 @@ class SubQuery(BaseModel):
     id: str = Field(description="Unique identifier (e.g., 'sq1')")
     goal: str
     expected_output: str = Field(description="What a successful result looks like")
-    tool_hint: Optional[str] = Field(default=None, description="Suggested tool: web_search | web_fetch | web_map")
+    tool_hint: Optional[str] = Field(default=None, description="Suggested tool: gk_web_search | web_fetch | web_map")
     boundary: str = Field(description="What this sub-query explicitly excludes — MUST state mutual exclusion with sibling sub-queries, not just the broader domain")
     depends_on: Optional[list[str]] = Field(default=None, description="IDs of prerequisite sub-queries")
 
@@ -56,7 +56,7 @@ class StrategyOutput(BaseModel):
 
 class ToolPlanItem(BaseModel):
     sub_query_id: str
-    tool: Literal["web_search", "web_fetch", "web_map"]
+    tool: Literal["gk_web_search", "web_fetch", "web_map"]
     reason: str
     params: Optional[dict] = Field(default=None, description="Tool-specific parameters")
 

@@ -120,7 +120,7 @@ def _extra_results_to_sources(
 
 
 @mcp.tool(
-    name="web_search",
+    name="gk_web_search",
     description="""
     Before using this tool, please use the search_planning tool to plan the search carefully.
     Performs a deep web search based on the given query and returns Grok's answer directly.
@@ -220,14 +220,14 @@ async def web_search(
 @mcp.tool(
     name="get_sources",
     description="""
-    When you feel confused or curious about the search response content, use the session_id returned by web_search to invoke the this tool to obtain the corresponding list of information sources.
-    Retrieve all cached sources for a previous web_search call.
-    Provide the session_id returned by web_search to get the full source list.
+    When you feel confused or curious about the search response content, use the session_id returned by gk_web_search to invoke the this tool to obtain the corresponding list of information sources.
+    Retrieve all cached sources for a previous gk_web_search call.
+    Provide the session_id returned by gk_web_search to get the full source list.
     """,
     meta={"version": "1.0.0", "author": "guda.studio"},
 )
 async def get_sources(
-    session_id: Annotated[str, "Session ID from previous web_search call."]
+    session_id: Annotated[str, "Session ID from previous gk_web_search call."]
 ) -> dict:
     sources = await _SOURCES_CACHE.get(session_id)
     if sources is None:
@@ -691,7 +691,7 @@ async def toggle_builtin_tools(
 
     ### 5. `tool_selection` → fill `tool_plan`
     Map each sub-query to optimal tool:
-    - **web_search**(query, platform?, extra_sources?): general retrieval
+    - **gk_web_search**(query, platform?, extra_sources?): general retrieval
     - **web_fetch**(url): extract full markdown from known URL
     - **web_map**(url, instructions?, max_depth?): discover site structure
 
