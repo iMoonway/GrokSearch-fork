@@ -28,6 +28,10 @@ Grok Search MCP is an MCP (Model Context Protocol) server built on [FastMCP](htt
 
 **Workflow**: `Claude → MCP → Grok API → Search/Fetch → Structured Return`
 
+### Fork Note
+
+> This repository is a temporary fork. The original MCP tool name conflicted with built-in MCP tools in [AstrBot](https://github.com/Soulter/AstrBot), causing tool invocation conflicts. Renaming `web_search` to `gk_web_search` is the current temporary workaround.
+
 ## Why Choose Grok?
 
 Comparison with other search solutions:

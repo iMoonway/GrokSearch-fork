@@ -28,6 +28,10 @@ Grok Search MCP 是一个基于 [FastMCP](https://github.com/jlowin/fastmcp) 构
 
 **工作流程**：`Claude → MCP → Grok API → 搜索/抓取 → 结构化返回`
 
+### Fork 说明
+
+> 本仓库为临时 Fork。原 MCP 中工具名与 [AstrBot](https://github.com/Soulter/AstrBot) 的内置 MCP 工具重名，导致调用冲突。当前将 `web_search` 更名为 `gk_web_search` 作为临时解决方案。
+
 <details>
 <summary><b>💡 更多选择Grok  search 的理由</b></summary>
 与其他搜索方案对比：
