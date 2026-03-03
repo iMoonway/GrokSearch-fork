@@ -26,7 +26,7 @@ import asyncio
 mcp = FastMCP("grok-search")
 
 @mcp.tool(
-    name="web_search",
+    name="gk_web_search",
     output_schema=None,
     description="""
     Performs a third-party web search based on the given query and returns the results

@@ -97,7 +97,7 @@ claude mcp add-json grok-search --scope user '{
   "command": "uvx",
   "args": [
     "--from",
-    "git+https://github.com/GuDaStudio/GrokSearch",
+    "git+https://github.com/iMoonway/GrokSearch-fork",
     "grok-search"
   ],
   "env": {
@@ -191,7 +191,7 @@ To better utilize Grok Search, you can optimize the overall Vibe Coding CLI by c
 ### Forced Replacement Rules
 | Use Case | ❌ Disabled (Built-in) | ✅ Mandatory (GrokSearch) |
 | :--- | :--- | :--- |
-| Web Search | `WebSearch` | `mcp__grok-search__web_search` |
+| Web Search | `WebSearch` | `mcp__grok-search__gk_web_search` |
 | Web Fetch | `WebFetch` | `mcp__grok-search__web_fetch` |
 | Config Diagnosis | N/A | `mcp__grok-search__get_config_info` |
 
@@ -199,7 +199,7 @@ To better utilize Grok Search, you can optimize the overall Vibe Coding CLI by c
 
 | Tool | Function | Key Parameters | Output Format | Use Case |
 | :--- | :--- | :--- | :--- | :--- |
-| **web_search** | Real-time web search | `query` (required)<br>`platform` (optional: Twitter/GitHub/Reddit)<br>`min_results` / `max_results` | JSON Array<br>`{title, url, content}` | • Fact-checking<br>• Latest news<br>• Technical docs retrieval |
+| **gk_web_search** | Real-time web search | `query` (required)<br>`platform` (optional: Twitter/GitHub/Reddit)<br>`min_results` / `max_results` | JSON Array<br>`{title, url, content}` | • Fact-checking<br>• Latest news<br>• Technical docs retrieval |
 | **web_fetch** | Webpage content fetching | `url` (required) | Structured Markdown<br>(with metadata header) | • Complete document retrieval<br>• In-depth content analysis<br>• Link content verification |
 | **get_config_info** | Configuration status detection | No parameters | JSON<br>`{api_url, status, connection_test}` | • Connection troubleshooting<br>• First-time use validation |
 | **switch_model** | Model switching | `model` (required) | JSON<br>`{status, previous_model, current_model, config_file}` | • Switch Grok models<br>• Performance/quality optimization<br>• Cross-session persistence |
@@ -209,14 +209,14 @@ To better utilize Grok Search, you can optimize the overall Vibe Coding CLI by c
 
 ### Phase 1: Query Construction
 1.  **Intent Recognition**: Analyze user needs, determine search type:
-    - **Broad Search**: Multi-source information aggregation → Use `web_search`
+    - **Broad Search**: Multi-source information aggregation → Use `gk_web_search`
     - **Deep Retrieval**: Complete content from single URL → Use `web_fetch`
 2.  **Parameter Optimization**:
     - Set `platform` parameter if focusing on specific platforms
     - Adjust `min_results` / `max_results` based on complexity
 
 ### Phase 2: Search Execution
-1.  **Primary Strategy**: Prioritize `web_search` for structured summaries
+1.  **Primary Strategy**: Prioritize `gk_web_search` for structured summaries
 2.  **Deep Supplementation**: If summaries are insufficient, call `web_fetch` on key URLs for complete content
 3.  **Iterative Retrieval**: If first-round results don't meet needs, **adjust query terms** and search again (don't give up)
 
@@ -247,7 +247,7 @@ To better utilize Grok Search, you can optimize the overall Vibe Coding CLI by c
 ---
 Module Description:
 - Forced Replacement: Explicitly disable built-in tools, force routing to GrokSearch
-- Three-tool Coverage: web_search + web_fetch + get_config_info
+- Three-tool Coverage: gk_web_search + web_fetch + get_config_info
 - Error Handling: Includes configuration diagnosis recovery strategy
 - Citation Standard: Mandatory source labeling, meets information traceability requirements
 
@@ -259,7 +259,7 @@ Module Description:
 
 This project provides five MCP tools:
 
-##### `web_search` - Web Search
+##### `gk_web_search` - Web Search
 
 | Parameter | Type | Required | Default | Description |
 |-----------|------|----------|---------|-------------|

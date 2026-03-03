@@ -100,7 +100,7 @@ claude mcp add-json grok-search --scope user '{
   "command": "uvx",
   "args": [
     "--from",
-    "git+https://github.com/GuDaStudio/GrokSearch",
+    "git+https://github.com/iMoonway/GrokSearch-fork",
     "grok-search"
   ],
   "env": {
@@ -159,14 +159,14 @@ claude mcp list
 
 | Tool | Parameters | Output | Use Case |
 |------|------------|--------|----------|
-| `web_search` | `query`(必填), `platform`/`min_results`/`max_results`(可选) | `[{title,url,content}]` | 多源聚合/事实核查/最新资讯 |
+| `gk_web_search` | `query`(必填), `platform`/`min_results`/`max_results`(可选) | `[{title,url,content}]` | 多源聚合/事实核查/最新资讯 |
 | `web_fetch` | `url`(必填) | Structured Markdown | 完整内容获取/深度分析 |
 | `get_config_info` | 无 | `{api_url,status,test}` | 连接诊断 |
 | `switch_model` | `model`(必填) | `{status,previous_model,current_model}` | 切换Grok模型/性能优化 |
 | `toggle_builtin_tools` | `action`(可选: on/off/status) | `{blocked,deny_list,file}` | 禁用/启用官方工具 |
 
 ## 执行策略
-**查询构建**：广度用 `web_search`，深度用 `web_fetch`，特定平台设 `platform` 参数
+**查询构建**：广度用 `gk_web_search`，深度用 `web_fetch`，特定平台设 `platform` 参数
 **搜索执行**：优先摘要 → 关键 URL 补充完整内容 → 结果不足调整查询重试（禁止放弃）
 **结果整合**：交叉验证 + **强制标注来源** `[标题](URL)` + 时间敏感信息注明日期
 
@@ -200,7 +200,7 @@ claude mcp list
   ### 强制替换规则
   | 需求场景 | ❌ 禁用 (Built-in) | ✅ 强制使用 (GrokSearch) |
   | :--- | :--- | :--- |
-  | 网络搜索 | `WebSearch` | `mcp__grok-search__web_search` |
+  | 网络搜索 | `WebSearch` | `mcp__grok-search__gk_web_search` |
   | 网页抓取 | `WebFetch` | `mcp__grok-search__web_fetch` |
   | 配置诊断 | N/A | `mcp__grok-search__get_config_info` |
 
@@ -208,7 +208,7 @@ claude mcp list
 
 | Tool | Parameters | Output | Use Case |
 |------|------------|--------|----------|
-| `web_search` | `query`(必填), `platform`/`min_results`/`max_results`(可选) | `[{title,url,content}]` | 多源聚合/事实核查/最新资讯 |
+| `gk_web_search` | `query`(必填), `platform`/`min_results`/`max_results`(可选) | `[{title,url,content}]` | 多源聚合/事实核查/最新资讯 |
 | `web_fetch` | `url`(必填) | Structured Markdown | 完整内容获取/深度分析 |
 | `get_config_info` | 无 | `{api_url,status,test}` | 连接诊断 |
 | `switch_model` | `model`(必填) | `{status,previous_model,current_model}` | 切换Grok模型/性能优化 |
@@ -219,14 +219,14 @@ claude mcp list
 
   ### Phase 1: 查询构建 (Query Construction)
   1.  **意图识别**：分析用户需求，确定搜索类型：
-      - **广度搜索**：多源信息聚合 → 使用 `web_search`
+      - **广度搜索**：多源信息聚合 → 使用 `gk_web_search`
       - **深度获取**：单一 URL 完整内容 → 使用 `web_fetch`
   2.  **参数优化**：
       - 若需聚焦特定平台，设置 `platform` 参数
       - 根据需求复杂度调整 `min_results` / `max_results`
 
   ### Phase 2: 搜索执行 (Search Execution)
-  1.  **首选策略**：优先使用 `web_search` 获取结构化摘要
+  1.  **首选策略**：优先使用 `gk_web_search` 获取结构化摘要
   2.  **深度补充**：若摘要不足以回答问题，对关键 URL 调用 `web_fetch` 获取完整内容
   3.  **迭代检索**：若首轮结果不满足需求，**调整查询词**后重新搜索（禁止直接放弃）
 
@@ -256,7 +256,7 @@ claude mcp list
   ---
   模块说明：
   - 强制替换：明确禁用内置工具，强制路由到 GrokSearch
-  - 三工具覆盖：web_search + web_fetch + get_config_info
+  - 三工具覆盖：gk_web_search + web_fetch + get_config_info
   - 错误处理：包含配置诊断的恢复策略
   - 引用规范：强制标注来源，符合信息可追溯性要求
 ````
@@ -269,7 +269,7 @@ claude mcp list
 
 本项目提供五个 MCP 工具：
 
-##### `web_search` - 网络搜索
+##### `gk_web_search` - 网络搜索
 
 | 参数 | 类型 | 必填 | 默认值 | 说明 |
 |------|------|------|--------|------|
