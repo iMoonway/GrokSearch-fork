@@ -24,6 +24,10 @@ Claude ──MCP──► Grok Search Server
                   └─ web_map     ───► Tavily Map（站点映射）
 ```
 
+### Fork 说明
+
+> 本仓库为临时 Fork。原 MCP 中工具名与 [AstrBot](https://github.com/Soulter/AstrBot) 的内置 MCP 工具重名，导致调用冲突。当前将 `web_search` 更名为 `gk_web_search` 作为临时解决方案。
+
 ### 功能特性
 
 - **双引擎**：Grok 搜索 + Tavily 抓取/映射，互补协作

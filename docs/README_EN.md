@@ -24,6 +24,10 @@ Claude --MCP--> Grok Search Server
                   └─ web_map     ---> Tavily Map (Site Mapping)
 ```
 
+### Fork Note
+
+> This repository is a temporary fork. The original MCP tool name conflicted with built-in MCP tools in [AstrBot](https://github.com/Soulter/AstrBot), causing tool invocation conflicts. Renaming `web_search` to `gk_web_search` is the current temporary workaround.
+
 ### Features
 
 - **Dual Engine**: Grok search + Tavily extraction/mapping, complementary collaboration
